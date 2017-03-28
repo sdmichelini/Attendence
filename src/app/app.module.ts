@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AttendenceListComponent } from './attendence-list/attendence-list.component';
 import { EventListComponent } from './event-list/event-list.component';
+import { AttendenceListItemComponent } from './attendence-list-item/attendence-list-item.component';
 
 const appRoutes: Routes = [
   { path: 'events', component: EventListComponent },
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AttendenceListComponent,
-    EventListComponent
+    EventListComponent,
+    AttendenceListItemComponent
   ],
   imports: [
     BrowserModule,

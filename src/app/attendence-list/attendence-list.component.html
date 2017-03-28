@@ -1,6 +1,5 @@
 <h1>{{ event.name }}</h1>
-<ul>
-  <li *ngFor='let item of attendence'>
-    {{ item.user.name }} | {{ item.presence }}
-  </li>
+<ul class='list-group'>
+  <app-attendence-list-item *ngFor='let item of attendence' [item]='item'>
+  </app-attendence-list-item>
 </ul>

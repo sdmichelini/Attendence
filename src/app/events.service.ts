@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { AttendenceEvent } from './event';
 
 const EVENTS: AttendenceEvent[] = [
-  { id: 1, name: "My Test Event", when: new Date(0), type: 0}
+  { id: 1, name: "My Test Event", when: new Date(0), type: 0},
+  { id: 2, name: "My Test Event 2", when: new Date(0), type: 0}
 ];
 
 /**
