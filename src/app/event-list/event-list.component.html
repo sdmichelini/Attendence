@@ -1,6 +1,6 @@
 <h1>Event List</h1>
 <ul class='list-group'>
   <li *ngFor='let event of events' class='list-group-item'>
-    {{ event.name }} | {{ event.when.toLocaleDateString() }} | {{ event.type }}
+    <a routerLink="{{ '/events/'+event.id }}">{{ event.name }}</a> | {{ event.when.toLocaleDateString() }} | {{ getTypeString(event) }}
   </li>
 </ul>
