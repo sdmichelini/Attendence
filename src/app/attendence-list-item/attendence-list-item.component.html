@@ -1,9 +1,13 @@
 <li class='list-group-item'  style='height: 4em;'>
-    <h3 style='display: inline;'>{{ item.user.name }}</h3> | {{ item.presence }} 
+    <h3 style='display: inline;'>{{ item.user.name }}</h3> 
     <div class='btn-group pull-right'>
-        <button type="button" class="btn btn-success">Present</button>
-        <button type="button" class="btn btn-primary">Excused</button>
-        <button type="button" class="btn btn-danger">Unexcused</button>
-        <button type="button" class="btn btn-default">N/A</button>
+        <button type="button" class={{getButtonStyle(1)}} 
+            (click)='presenceButtonClicked(1)'>Present</button>
+        <button type="button" class={{getButtonStyle(2)}} 
+            (click)='presenceButtonClicked(2)'>Excused</button>
+        <button type="button" class={{getButtonStyle(3)}} 
+            (click)='presenceButtonClicked(3)'>Unexcused</button>
+        <button type="button" class={{getButtonStyle(0)}} 
+            (click)='presenceButtonClicked(0)'>N/A</button>
     </div>
 </li>

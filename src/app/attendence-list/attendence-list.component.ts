@@ -52,4 +52,13 @@ export class AttendenceListComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  presenceChange(item: AttendenceItem) {
+    for(let i = 0; i < this.attendence.length; i++) {
+      if(item.user.id == this.attendence[i].user.id) {
+        this.attendence[i].presence = item.presence;
+        break;
+      }
+    }
+  }
+ 
 }
