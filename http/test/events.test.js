@@ -17,27 +17,25 @@ describe('Events Test', () => {
             });
     });
 
-    it('should get attendence', (done) => {
-        request.get('http://localhost:3000/api/attendence')
+    it('should get a single event', (done)=>{
+        request.get('http://localhost:3000/api/events/1')
             .end((err, res) => {
                 expect(err).to.not.be.ok;
-                expect(res.body).to.have.property('attendence');
-                expect(res.body.attendence).to.be.an('array');
+                expect(res.body).to.have.property('event');
+                expect(res.body.event).to.be.an('object');
+                expect(res.body.event).to.have.property('name');
+                expect(res.body.event).to.have.property('when');
+                expect(res.body.event).to.have.property('type');
                 done();
             });
     });
 
-    it('should get attendence for a single event', (done) => {
-        let event_id = 1;
-        request.get(`http://localhost:3000/api/attendence?event_id=${event_id}`)
+    it('should not find an event if it is not associated with the id', (done)=>{
+        request.get('http://localhost:3000/api/events/badXyId')
             .end((err, res) => {
-                expect(err).to.not.be.ok;
-                expect(res.body).to.have.property('attendence');
-                expect(res.body.attendence).to.be.an('array');
-                for(let attendence_item of res.body.attendence) {
-                    expect(attendence_item).to.have.property('event_id');
-                    expect(attendence_item.event_id).to.equal(event_id);
-                }
+                expect(res.status).to.equal(404);
+                expect(res.body).to.have.property('errors');
+                expect(res.body.errors).to.be.an('array');
                 done();
             });
     });

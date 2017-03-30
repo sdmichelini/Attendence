@@ -6,7 +6,8 @@ describe('HTTP Tests', ()=>{
         server = app.listen(3000, done);
     });
 
-    require('./events.test.js');
+    require('./attendence.test');
+    require('./events.test');
 
     after(() => {
         server.close();
