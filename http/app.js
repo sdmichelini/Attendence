@@ -7,6 +7,29 @@ const cors = require('cors')
 
 app.use(cors());
 
+app.get('/api/attendence', (req, res) => {
+    const ATTENDENCE = [
+            { id: 1, user: {
+                name: 'Sample Person',
+                id: 'xyz'
+            }, event_id: 1 },
+            { id: 2, user: {
+                name: 'Sample Person',
+                id: 'xyz'
+            }, event_id: 2 }
+        ];
+    const FILTERED_ATTENDENCE = ATTENDENCE.filter((item) => {
+        if(req.query.event_id) {
+            return req.query.event_id == String(item.event_id);
+        } else {
+            return true;
+        }
+    });
+    res.json({
+        attendence: FILTERED_ATTENDENCE
+    });
+});
+
 app.get('/api/events', (req, res) => {
     res.json({
         events: [
