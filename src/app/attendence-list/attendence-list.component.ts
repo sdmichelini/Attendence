@@ -18,6 +18,7 @@ import { EventsService } from '../events.service';
 export class AttendenceListComponent implements OnInit, OnDestroy {
   id: number;
   private sub: any;
+  error: any;
 
   attendence: AttendenceItem[];
   event: AttendenceEvent = {
@@ -35,9 +36,12 @@ export class AttendenceListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
-      this.attendenceService.getAttendenceForEvent(this.id).then(
+      this.attendenceService.getAttendenceForEvent(this.id).subscribe(
         attendence => {
           this.attendence = attendence;
+        },
+        error => {
+          this.setError(error);
         }
       );
       this.eventsService.getEventById(this.id).then(
@@ -59,6 +63,11 @@ export class AttendenceListComponent implements OnInit, OnDestroy {
         break;
       }
     }
+  }
+
+  setError(error: any) {
+      this.error = {'msg':'Error Loading Attendence for the Event.'};
+      console.error(error);
   }
  
 }

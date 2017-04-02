@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 import { AttendenceEvent } from './event';
 import { environment } from '../environments/environment';
@@ -53,9 +54,9 @@ export class EventsService {
       console.log(event);
       events.push(event);
     }
-    
     return events || [];
   }
+  
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
@@ -66,7 +67,6 @@ export class EventsService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    console.error(errMsg);
     return Observable.throw(errMsg);
   }
 

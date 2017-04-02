@@ -1,4 +1,7 @@
 <h1>{{ event.name }}</h1>
+<div *ngIf='error' class="alert alert-danger" role="alert">
+  {{ error.msg }}
+</div>
 <ul class='list-group'>
   <app-attendence-list-item 
     *ngFor='let item of attendence' 

@@ -1,4 +1,7 @@
 <h1>Event List</h1>
+<div *ngIf='error' class="alert alert-danger" role="alert">
+  {{ error.msg }}
+</div>
 <ul class='list-group'>
   <li *ngFor='let event of events' class='list-group-item'>
     <a routerLink="{{ '/events/'+event.id }}">{{ event.name }}</a> | {{ event.when.toLocaleDateString() }} | {{ getTypeString(event) }}

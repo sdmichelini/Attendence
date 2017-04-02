@@ -6,11 +6,13 @@ module.exports = {
                 { id: 1, user: {
                     name: 'Sample Person',
                     id: 'xyz'
-                }, event_id: 1 },
+                }, event_id: 1
+                , presence: 0 },
                 { id: 2, user: {
                     name: 'Sample Person',
                     id: 'xyz'
-                }, event_id: 2 }
+                }, event_id: 2,
+                presence: 3 }
             ];
         const FILTERED_ATTENDENCE = ATTENDENCE.filter((item) => {
             // We can filter by more query parameters if we like

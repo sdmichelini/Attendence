@@ -13,10 +13,12 @@ import { AttendenceEvent, AttendenceType } from '../event'
 export class EventListComponent implements OnInit {
 
   events: AttendenceEvent[];
+  error: any;
 
   constructor(private eventService: EventsService) { }
 
   ngOnInit() {
+    this.error = undefined;
     this.getEvents();
   }
 
@@ -24,7 +26,7 @@ export class EventListComponent implements OnInit {
     // Load the promise
     this.eventService.getEvents().subscribe(
                      events => this.events = events,
-                     error =>  alert(error));
+                     error =>  this.setError(error));
   }
     /**
  * Get the string for the associated type
@@ -45,6 +47,10 @@ export class EventListComponent implements OnInit {
               typeString = 'Uncategorized';
       }
       return typeString;
+  }
+
+  setError(error: any) {
+      this.error = {'msg':'Error Loading Events.'};
   }
 
 
