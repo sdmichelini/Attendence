@@ -20,10 +20,19 @@ const db = pgp(connectionObject);
 
 // add query functions
 function getAllEvents() {
-    console.log(process.env.PG_USERNAME);
-    return db.any('select * from events');
+  return db.any('select * from events');
+}
+
+function getAllAttendenceItems() {
+  return db.any('select * from attendence_items');
+}
+
+function getAttendenceForEvents(event_id) {
+  return db.query('SELECT * from attendence_items WHERE event_id=${event_id}');
 }
 
 module.exports = {
-  getAllEvents: getAllEvents
+  getAllEvents: getAllEvents,
+  getAllAttendenceItems: getAllAttendenceItems,
+  getAttendenceForEvents: getAttendenceForEvents
 };
