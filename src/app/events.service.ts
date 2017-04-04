@@ -48,7 +48,7 @@ export class EventsService {
       event = { 
         id: value.id, 
         name: value.name, 
-        when: new Date(value.when), 
+        when: new Date(value.stamp), 
         type: value.type
       };
       console.log(event);

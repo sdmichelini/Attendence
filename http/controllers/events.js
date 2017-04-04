@@ -1,5 +1,7 @@
 'use strict';
 
+const getAllEvents = require('../../db/queries.js').getAllEvents;
+
 const EVENTS = [
             { id: 1, name: 'Server Event 1', when: new Date(0), type: 1},
             { id: 2, name: 'Made in Express', when: new Date(10000), type: 3}
@@ -7,9 +9,15 @@ const EVENTS = [
 
 module.exports = {
     getEvents: (req, res) => {
-        res.json({
-            events: EVENTS
-        });
+        getAllEvents().then(events => {
+            res.json({
+                events: events
+            });
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({ errors: ['Internal Server Error']})
+        })
     },
     getEvent: (req, res) => {
         let id = req.params.id;

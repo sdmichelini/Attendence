@@ -7,6 +7,8 @@ const events = require('./controllers/events');
 
 const app = express();
 
+require('dotenv').config();
+
 app.use(cors());
 
 app.get('/api/attendence', attendence.getAttendence);
