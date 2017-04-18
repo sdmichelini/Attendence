@@ -30,8 +30,13 @@ module.exports = {
             }
         })
         .catch(err => {
-            console.error(err);
-            res.status(500).json({ errors: ['Internal Server Error']})
+            if(err.code != undefined){
+                res.status(404).json({
+                    errors: ['Event Not Found.']
+                });
+            } else {
+                res.status(500).json({ errors: ['Internal Server Error']});
+            }
         });
     }
 }
