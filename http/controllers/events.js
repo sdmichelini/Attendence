@@ -1,11 +1,7 @@
 'use strict';
 
 const getAllEvents = require('../../db/queries.js').getAllEvents;
-
-const EVENTS = [
-            { id: 1, name: 'Server Event 1', when: new Date(0), type: 1},
-            { id: 2, name: 'Made in Express', when: new Date(10000), type: 3}
-        ];
+const getEvent = require('../../db/queries.js').getEvent;
 
 module.exports = {
     getEvents: (req, res) => {
@@ -21,17 +17,21 @@ module.exports = {
     },
     getEvent: (req, res) => {
         let id = req.params.id;
-        const MATCHING_EVENT = EVENTS.filter((event) => {
-            return String(event.id) == id;
-        }); 
-        if(MATCHING_EVENT.length == 0) {
-            res.status(404).json({
-                errors: ['Event Not Found.']
-            });
-        } else {
-            res.json({
-                event: MATCHING_EVENT[0]
-            });
-        }
+        getEvent(id).then(event => {
+            console.log(event);
+            if(!event) {
+                res.status(404).json({
+                    errors: ['Event Not Found.']
+                });
+            } else {
+                res.json({
+                    event: event
+                });
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({ errors: ['Internal Server Error']})
+        });
     }
 }
